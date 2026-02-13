@@ -1,39 +1,55 @@
 /* ============================================
-   The Island of Infinitia - Myst-Style CSS
-   Dark, atmospheric, mysterious aesthetic
+   The Hill - MBA AP Calculus AB Adventure
+   Montgomery Bell Academy themed design
    ============================================ */
 
-/* CSS Variables for theming */
+/* CSS Variables for theming - MBA Brand Colors */
 :root {
-    --bg-dark: #0a0e14;
-    --bg-medium: #141b24;
-    --bg-light: #1e2832;
-    --bg-panel: #1a222d;
+    /* MBA Primary: Cardinal and Silver */
+    --mba-cardinal: #A30046;
+    --mba-silver: #9D9FA2;
+    /* MBA Secondary: Cordovan, Grey, Yellow, Blue */
+    --mba-cordovan: #4A1326;
+    --mba-grey: #4D4D4F;
+    --mba-yellow: #FFCF01;
+    --mba-blue: #4699C2;
 
-    --text-primary: #e8dcc4;
-    --text-secondary: #9aa5b1;
-    --text-muted: #5a6a7a;
-    --text-highlight: #f4e4bc;
+    /* Background colors - Cordovan/Cardinal tones */
+    --bg-dark: #1a0a10;
+    --bg-medium: #2a1420;
+    --bg-light: #3a1e2a;
+    --bg-panel: #2d1620;
 
-    --accent-gold: #c9a84c;
-    --accent-gold-dim: #8a7235;
-    --accent-blue: #4a7c9b;
-    --accent-blue-bright: #6ba4c9;
+    /* Text colors */
+    --text-primary: #f0ebe6;
+    --text-secondary: #9D9FA2;
+    --text-muted: #6a6a6c;
+    --text-highlight: #FFCF01;
+
+    /* Accent colors mapped from MBA palette */
+    --accent-gold: #FFCF01;
+    --accent-gold-dim: #b89a00;
+    --accent-blue: #4699C2;
+    --accent-blue-bright: #6bb3d6;
     --accent-green: #4a9b6a;
-    --accent-red: #9b4a4a;
+    --accent-red: #A30046;
 
-    --border-subtle: #2a3644;
-    --border-accent: #3a4a5c;
+    /* Borders */
+    --border-subtle: #4A1326;
+    --border-accent: #A30046;
 
+    /* Shadows */
     --shadow-dark: rgba(0, 0, 0, 0.5);
-    --shadow-glow: rgba(201, 168, 76, 0.3);
+    --shadow-glow: rgba(163, 0, 70, 0.4);
 
+    /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-medium: 0.4s ease;
     --transition-slow: 0.8s ease;
 
-    --font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* MBA Web Fonts: Georgia and Arial */
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: Arial, Helvetica, sans-serif;
     --font-mono: 'Consolas', 'Courier New', monospace;
 }
 
@@ -129,40 +145,41 @@ body {
     position: relative;
 }
 
-.island-silhouette {
+.hill-silhouette {
     width: 300px;
-    height: 100px;
+    height: 120px;
     margin: 0 auto;
     background: linear-gradient(180deg,
         transparent 0%,
-        var(--bg-light) 40%,
+        var(--mba-cordovan) 30%,
         var(--bg-medium) 100%);
     clip-path: polygon(
         0% 100%,
-        10% 60%,
-        20% 70%,
-        30% 40%,
-        40% 50%,
-        50% 20%,
-        60% 35%,
-        70% 25%,
-        80% 45%,
-        90% 55%,
+        5% 90%,
+        15% 70%,
+        30% 45%,
+        45% 25%,
+        50% 15%,
+        55% 25%,
+        70% 45%,
+        85% 70%,
+        95% 90%,
         100% 100%
     );
     position: relative;
 }
 
-.island-silhouette::before {
+.hill-silhouette::before {
     content: '';
     position: absolute;
-    bottom: -20px;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    width: 350px;
+    width: 60px;
     height: 40px;
-    background: radial-gradient(ellipse, var(--accent-blue) 0%, transparent 70%);
-    opacity: 0.3;
+    background: var(--mba-cardinal);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    opacity: 0.6;
 }
 
 .menu-buttons {
@@ -284,7 +301,7 @@ body {
     font-size: 1.1rem;
 }
 
-.island-map {
+.campus-map {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
@@ -1133,8 +1150,8 @@ body {
    REGION ANIMATED BACKGROUNDS
    ============================================ */
 
-/* Tidal Observatory - Wave Animation */
-#region-screen[data-region="tidal-observatory"]::before {
+/* Library - Floating Pages Animation */
+#region-screen[data-region="library"]::before {
     content: '';
     position: fixed;
     top: 0;
@@ -1142,49 +1159,52 @@ body {
     right: 0;
     bottom: 0;
     background:
-        linear-gradient(180deg, transparent 30%, rgba(74, 124, 155, 0.08) 50%, transparent 70%),
-        linear-gradient(180deg, transparent 50%, rgba(74, 124, 155, 0.05) 65%, transparent 80%);
-    animation: waveMove 8s ease-in-out infinite;
+        linear-gradient(180deg, transparent 30%, rgba(163, 0, 70, 0.05) 50%, transparent 70%),
+        linear-gradient(180deg, transparent 50%, rgba(157, 159, 162, 0.03) 65%, transparent 80%);
+    animation: pageFloat 10s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes waveMove {
+@keyframes pageFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(30px); }
+    50% { transform: translateY(20px); }
 }
 
-/* Clocktower - Rotating Gears */
-#region-screen[data-region="clocktower"]::before {
-    content: '⚙';
+/* Bell Tower - Swinging Bell */
+#region-screen[data-region="bell-tower"]::before {
+    content: '🔔';
     position: fixed;
-    top: 20%;
-    right: 10%;
-    font-size: 15rem;
-    opacity: 0.03;
-    animation: gearRotate 20s linear infinite;
+    top: 15%;
+    right: 15%;
+    font-size: 12rem;
+    opacity: 0.04;
+    animation: bellSwing 4s ease-in-out infinite;
+    transform-origin: top center;
     pointer-events: none;
     z-index: -1;
 }
 
-#region-screen[data-region="clocktower"]::after {
-    content: '⚙';
+#region-screen[data-region="bell-tower"]::after {
+    content: '🔔';
     position: fixed;
-    bottom: 10%;
-    left: 5%;
-    font-size: 10rem;
+    bottom: 15%;
+    left: 10%;
+    font-size: 8rem;
     opacity: 0.03;
-    animation: gearRotate 15s linear infinite reverse;
+    animation: bellSwing 5s ease-in-out infinite reverse;
+    transform-origin: top center;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes gearRotate {
-    to { transform: rotate(360deg); }
+@keyframes bellSwing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
 }
 
-/* Greenhouse - Floating Leaves */
-#region-screen[data-region="greenhouse"]::before {
+/* Quad - Floating Leaves */
+#region-screen[data-region="quad"]::before {
     content: '';
     position: fixed;
     top: 0;
@@ -1206,8 +1226,8 @@ body {
     75% { transform: translateY(15px) translateX(10px); }
 }
 
-/* Weather Station - Moving Clouds */
-#region-screen[data-region="weather-station"]::before {
+/* Science Wing - Particle Movement */
+#region-screen[data-region="science-wing"]::before {
     content: '';
     position: fixed;
     top: 5%;
@@ -1215,20 +1235,20 @@ body {
     width: 200%;
     height: 40%;
     background:
-        radial-gradient(ellipse at 25% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-        radial-gradient(ellipse at 75% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
-    animation: cloudDrift 30s linear infinite;
+        radial-gradient(ellipse at 25% 50%, rgba(70, 153, 194, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 75% 40%, rgba(163, 0, 70, 0.04) 0%, transparent 40%);
+    animation: particleDrift 25s linear infinite;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes cloudDrift {
+@keyframes particleDrift {
     from { transform: translateX(0); }
     to { transform: translateX(25%); }
 }
 
-/* Mining Caverns - Crystal Glow */
-#region-screen[data-region="mining-caverns"]::before {
+/* Archives - Document Glow */
+#region-screen[data-region="archives"]::before {
     content: '';
     position: fixed;
     top: 0;
@@ -1236,21 +1256,21 @@ body {
     right: 0;
     bottom: 0;
     background:
-        radial-gradient(ellipse at 15% 85%, rgba(201, 168, 76, 0.08) 0%, transparent 20%),
-        radial-gradient(ellipse at 85% 20%, rgba(107, 164, 201, 0.06) 0%, transparent 20%),
-        radial-gradient(ellipse at 50% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 30%);
-    animation: crystalPulse 4s ease-in-out infinite;
+        radial-gradient(ellipse at 15% 85%, rgba(255, 207, 1, 0.06) 0%, transparent 20%),
+        radial-gradient(ellipse at 85% 20%, rgba(163, 0, 70, 0.05) 0%, transparent 20%),
+        radial-gradient(ellipse at 50% 50%, rgba(157, 159, 162, 0.04) 0%, transparent 30%);
+    animation: archiveGlow 4s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes crystalPulse {
+@keyframes archiveGlow {
     0%, 100% { opacity: 0.6; }
     50% { opacity: 1; }
 }
 
-/* Reservoir - Water Ripples */
-#region-screen[data-region="reservoir"]::before {
+/* Natatorium - Water Ripples */
+#region-screen[data-region="natatorium"]::before {
     content: '';
     position: fixed;
     bottom: -50%;
@@ -1259,7 +1279,7 @@ body {
     height: 100%;
     transform: translateX(-50%);
     background:
-        radial-gradient(ellipse at 50% 80%, rgba(74, 124, 155, 0.1) 0%, transparent 30%);
+        radial-gradient(ellipse at 50% 80%, rgba(70, 153, 194, 0.1) 0%, transparent 30%);
     animation: rippleExpand 6s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
@@ -1270,8 +1290,8 @@ body {
     50% { transform: translateX(-50%) scale(1.2); opacity: 0.2; }
 }
 
-/* Alchemist's Lab - Bubbling */
-#region-screen[data-region="alchemist-lab"]::before {
+/* Chemistry Lab - Bubbling Reactions */
+#region-screen[data-region="chem-lab"]::before {
     content: '';
     position: fixed;
     bottom: 0;
@@ -1280,8 +1300,8 @@ body {
     height: 50%;
     background:
         radial-gradient(circle at 20% 90%, rgba(74, 155, 106, 0.08) 0%, transparent 10%),
-        radial-gradient(circle at 50% 85%, rgba(155, 74, 155, 0.06) 0%, transparent 8%),
-        radial-gradient(circle at 80% 95%, rgba(74, 124, 155, 0.07) 0%, transparent 12%);
+        radial-gradient(circle at 50% 85%, rgba(163, 0, 70, 0.06) 0%, transparent 8%),
+        radial-gradient(circle at 80% 95%, rgba(70, 153, 194, 0.07) 0%, transparent 12%);
     animation: bubbleRise 8s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
@@ -1292,8 +1312,8 @@ body {
     50% { transform: translateY(-40px); }
 }
 
-/* Architect's Ruins - Floating Geometry */
-#region-screen[data-region="architect-ruins"]::before {
+/* Stadium - Geometric Lines */
+#region-screen[data-region="stadium"]::before {
     content: '';
     position: fixed;
     top: 0;
@@ -1301,15 +1321,15 @@ body {
     right: 0;
     bottom: 0;
     background:
-        linear-gradient(45deg, transparent 45%, rgba(201, 168, 76, 0.02) 50%, transparent 55%),
-        linear-gradient(-45deg, transparent 45%, rgba(201, 168, 76, 0.02) 50%, transparent 55%);
+        linear-gradient(45deg, transparent 45%, rgba(163, 0, 70, 0.03) 50%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, rgba(255, 207, 1, 0.02) 50%, transparent 55%);
     background-size: 100px 100px;
-    animation: geometryFloat 15s linear infinite;
+    animation: stadiumPulse 15s linear infinite;
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes geometryFloat {
+@keyframes stadiumPulse {
     from { background-position: 0 0, 0 0; }
     to { background-position: 100px 100px, -100px 100px; }
 }

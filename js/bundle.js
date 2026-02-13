@@ -1,6 +1,6 @@
 /**
  * bundle.js - All game code bundled for direct browser use
- * The Island of Infinitia - AP Calculus AB Adventure
+ * The Hill - MBA AP Calculus AB Adventure
  */
 
 (function() {
@@ -345,14 +345,14 @@
                 currentRegion: null,
                 currentTopic: null,
                 runes: {
-                    'tidal-observatory': false,
-                    'clocktower': false,
-                    'greenhouse': false,
-                    'weather-station': false,
-                    'mining-caverns': false,
-                    'reservoir': false,
-                    'alchemist-lab': false,
-                    'architect-ruins': false
+                    'library': false,
+                    'bell-tower': false,
+                    'quad': false,
+                    'science-wing': false,
+                    'archives': false,
+                    'natatorium': false,
+                    'chem-lab': false,
+                    'stadium': false
                 },
                 topics: {},
                 stats: {
@@ -545,7 +545,7 @@
         }
 
         function isRegionAvailable(regionId) {
-            const availableRegions = ['tidal-observatory', 'clocktower', 'greenhouse', 'weather-station', 'mining-caverns', 'reservoir', 'alchemist-lab', 'architect-ruins'];
+            const availableRegions = ['library', 'bell-tower', 'quad', 'science-wing', 'archives', 'natatorium', 'chem-lab', 'stadium'];
             return availableRegions.includes(regionId);
         }
 
@@ -584,14 +584,14 @@
     // ============================================
     const Locations = (function() {
         const regions = {
-            'tidal-observatory': {
-                id: 'tidal-observatory',
-                name: 'The Tidal Observatory',
+            'library': {
+                id: 'library',
+                name: 'The Library',
                 unit: 1,
                 unitName: 'Limits and Continuity',
-                icon: '🌊',
+                icon: '📚',
                 runeSymbol: '∞',
-                description: '<p>The ancient Tidal Observatory rises from the rocky shore, its brass instruments green with age. Generations of island scholars tracked the tides here, predicting the water\'s approach to precise levels.</p><p>Their secret? Understanding how values <em>approach</em> their destinations—the mathematical concept of <strong>limits</strong>.</p><p>Stone tablets line the walls, each inscribed with lessons about approaching, but never quite reaching. Study them well, and prove your understanding to claim the Rune of Infinity.</p>',
+                description: '<p>The grand MBA Library houses centuries of mathematical wisdom in its towering stacks. Scholars before you pored over these texts, learning how values <em>approach</em> their destinations.</p><p>Their secret? Understanding the mathematical concept of <strong>limits</strong>—the foundation upon which all of calculus is built.</p><p>Ancient volumes line the shelves, each containing lessons about approaching, but never quite reaching. Study them well, and prove your understanding to claim the Rune of Infinity.</p>',
                 runeMessage: 'You have mastered the art of limits—understanding how values approach their destinations. The Rune of Infinity recognizes your wisdom in comprehending the infinite.',
                 topics: [
                     { id: '1.1', name: 'Introducing Calculus: Can Change Occur at an Instant?' },
@@ -612,14 +612,14 @@
                     { id: '1.16', name: 'Working with the Intermediate Value Theorem' }
                 ]
             },
-            'clocktower': {
-                id: 'clocktower',
-                name: 'The Clocktower',
+            'bell-tower': {
+                id: 'bell-tower',
+                name: 'The Bell Tower',
                 unit: 2,
                 unitName: 'Differentiation: Definition and Fundamental Properties',
-                icon: '⚙️',
+                icon: '🔔',
                 runeSymbol: '∂',
-                description: '<p>The great Clocktower stands at the island\'s heart, its massive gears tracking the motion of celestial bodies.</p><p class="coming-soon"><em>This region\'s lessons are being transcribed from ancient texts. Return soon.</em></p>',
+                description: '<p>The iconic Bell Tower stands at the heart of The Hill, its resonant chimes marking each hour. The bell\'s swing—its velocity and acceleration—are a perfect introduction to rates of change.</p><p>Here you will master the art of <strong>differentiation</strong>, learning to find the instantaneous rate of change of any function.</p>',
                 runeMessage: 'You have learned to measure the rate of change at any instant. The Rune of Derivatives honors your mastery of differentiation.',
                 topics: [
                     { id: '2.1', name: 'Defining Average and Instantaneous Rates of Change' },
@@ -634,13 +634,13 @@
                     { id: '2.10', name: 'Finding Derivatives of Tangent, Cotangent, Secant, Cosecant' }
                 ]
             },
-            'greenhouse': {
-                id: 'greenhouse',
-                name: 'The Greenhouse',
+            'quad': {
+                id: 'quad',
+                name: 'The Quad',
                 unit: 3,
-                icon: '🌿',
+                icon: '🌳',
                 runeSymbol: '∘',
-                description: '<p>Glass walls stretch toward the sky, encasing an impossible garden where vines intertwine in complex patterns.</p><p>Here you will master the <strong>Chain Rule</strong> for composite functions, <strong>Implicit Differentiation</strong> for tangled relationships, and the derivatives of <strong>Inverse Functions</strong>.</p>',
+                description: '<p>The central Quad is where pathways intertwine and connect all corners of campus. Just as these paths weave together, so do composite functions.</p><p>Here you will master the <strong>Chain Rule</strong> for composite functions, <strong>Implicit Differentiation</strong> for intertwined relationships, and the derivatives of <strong>Inverse Functions</strong>.</p>',
                 topics: [
                     { id: '3.1', name: 'The Chain Rule' },
                     { id: '3.2', name: 'Implicit Differentiation' },
@@ -650,13 +650,13 @@
                     { id: '3.6', name: 'Calculating Higher-Order Derivatives' }
                 ]
             },
-            'weather-station': {
-                id: 'weather-station',
-                name: 'The Weather Station',
+            'science-wing': {
+                id: 'science-wing',
+                name: 'The Science Wing',
                 unit: 4,
-                icon: '🌤️',
+                icon: '🔬',
                 runeSymbol: 'Δ',
-                description: '<p>High on the cliffs, the Weather Station monitors the island\'s ever-changing conditions—temperature, pressure, wind speed—all quantities that change with time.</p><p>Master <strong>Related Rates</strong>, <strong>Motion Analysis</strong>, <strong>Linear Approximation</strong>, and <strong>L\'Hospital\'s Rule</strong> to understand how changing quantities are connected.</p>',
+                description: '<p>In the Science Wing, experiments track ever-changing quantities—temperature, pressure, reaction rates—all changing with time and connected in complex ways.</p><p>Master <strong>Related Rates</strong>, <strong>Motion Analysis</strong>, <strong>Linear Approximation</strong>, and <strong>L\'Hospital\'s Rule</strong> to understand how changing quantities are connected.</p>',
                 topics: [
                     { id: '4.1', name: 'Interpreting the Meaning of the Derivative in Context' },
                     { id: '4.2', name: 'Straight-Line Motion' },
@@ -667,13 +667,13 @@
                     { id: '4.7', name: 'Using L\'Hospital\'s Rule' }
                 ]
             },
-            'mining-caverns': {
-                id: 'mining-caverns',
-                name: 'The Mining Caverns',
+            'archives': {
+                id: 'archives',
+                name: 'The Archives',
                 unit: 5,
-                icon: '⛏️',
+                icon: '📜',
                 runeSymbol: '⋆',
-                description: '<p>Deep beneath the island, crystalline caverns hold veins of precious ore. The ancient miners sought optimal paths—maximum yield, minimum effort.</p><p>Master the <strong>Mean Value Theorem</strong>, <strong>Extrema</strong>, <strong>Concavity</strong>, and <strong>Optimization</strong> to find the richest veins and best routes.</p>',
+                description: '<p>Deep in The Archives, dusty records hold the secrets of optimization—how past scholars found the best solutions, maximum efficiency, minimum waste.</p><p>Master the <strong>Mean Value Theorem</strong>, <strong>Extrema</strong>, <strong>Concavity</strong>, and <strong>Optimization</strong> to find the optimal answers hidden in these records.</p>',
                 topics: [
                     { id: '5.1', name: 'Using the Mean Value Theorem' },
                     { id: '5.2', name: 'Extreme Value Theorem and Critical Points' },
@@ -689,13 +689,13 @@
                     { id: '5.12', name: 'Implicit Relations' }
                 ]
             },
-            'reservoir': {
-                id: 'reservoir',
-                name: 'The Reservoir',
+            'natatorium': {
+                id: 'natatorium',
+                name: 'The Natatorium',
                 unit: 6,
-                icon: '💧',
+                icon: '🏊',
                 runeSymbol: '∫',
-                description: '<p>The great Reservoir collects water from across the island. Here, accumulation is everything—measuring total flow from rates of change.</p><p>Master <strong>Riemann Sums</strong>, the <strong>Fundamental Theorem of Calculus</strong>, <strong>Antiderivatives</strong>, and <strong>u-Substitution</strong> to understand how quantities accumulate.</p>',
+                description: '<p>The Natatorium\'s pool fills and drains according to precise rates. Here, accumulation is everything—measuring total volume from flow rates.</p><p>Master <strong>Riemann Sums</strong>, the <strong>Fundamental Theorem of Calculus</strong>, <strong>Antiderivatives</strong>, and <strong>u-Substitution</strong> to understand how quantities accumulate over time.</p>',
                 topics: [
                     { id: '6.1', name: 'Exploring Accumulations of Change' },
                     { id: '6.2', name: 'Approximating Areas with Riemann Sums' },
@@ -710,13 +710,13 @@
                     { id: '6.14', name: 'Selecting Antidifferentiation Techniques' }
                 ]
             },
-            'alchemist-lab': {
-                id: 'alchemist-lab',
-                name: 'The Alchemist\'s Lab',
+            'chem-lab': {
+                id: 'chem-lab',
+                name: 'The Chemistry Lab',
                 unit: 7,
                 icon: '⚗️',
                 runeSymbol: 'φ',
-                description: '<p>Bubbling potions and strange apparatus fill this ancient laboratory. Here, the alchemists discovered that change itself follows patterns—differential equations.</p><p>Master <strong>Slope Fields</strong>, <strong>Separation of Variables</strong>, and <strong>Exponential Models</strong> to predict how quantities evolve over time.</p>',
+                description: '<p>Bubbling beakers and precise instruments fill the Chemistry Lab. Here, reaction rates and decay processes follow predictable patterns—differential equations.</p><p>Master <strong>Slope Fields</strong>, <strong>Separation of Variables</strong>, and <strong>Exponential Models</strong> to predict how quantities evolve over time.</p>',
                 topics: [
                     { id: '7.1', name: 'Modeling with Differential Equations' },
                     { id: '7.2', name: 'Verifying Solutions' },
@@ -727,13 +727,13 @@
                     { id: '7.8', name: 'Exponential Models' }
                 ]
             },
-            'architect-ruins': {
-                id: 'architect-ruins',
-                name: 'The Architect\'s Ruins',
+            'stadium': {
+                id: 'stadium',
+                name: 'The Stadium',
                 unit: 8,
-                icon: '🏛️',
+                icon: '🏟️',
                 runeSymbol: 'Ω',
-                description: '<p>Crumbling columns and geometric foundations mark where the island\'s greatest builders once worked. Ancient blueprints reveal their secrets: they calculated volumes of curved structures, areas between sweeping arches, and the average strength of materials over varying spans.</p><p>Their monuments used rotating shapes to create perfect domes and washers to hollow grand hallways. Master these techniques of <strong>integration applications</strong> to restore the ruins and claim the final rune.</p>',
+                description: '<p>The Stadium\'s grandstands curve in perfect arcs, its field a testament to geometric precision. Architects calculated the volume of seating sections, the area of the field, and the average capacity across different sections.</p><p>They used rotating shapes to design the curved bowl and calculated cross-sectional areas for structural integrity. Master these techniques of <strong>integration applications</strong> to claim the final rune.</p>',
                 topics: [
                     { id: '8.1', name: 'Average Value of a Function' },
                     { id: '8.2', name: 'Position, Velocity, and Acceleration' },
@@ -1190,7 +1190,7 @@
             }
         };
 
-        const placeholderContent = '<h3>Coming Soon</h3><p>This lesson is being transcribed from the ancient texts of Infinitia.</p>';
+        const placeholderContent = '<h3>Coming Soon</h3><p>This lesson is being prepared by the scholars of The Hill.</p>';
 
         function getLesson(topicId) {
             if (lessons[topicId]) {
@@ -2064,12 +2064,12 @@
         let puzzleQueue = [];
 
         const introStory = [
-            "The storm came without warning...",
-            "Your vessel was torn asunder upon the rocks.",
-            "You awaken on an unfamiliar shore.",
-            "Before you rises an island shrouded in mist—Infinitia.",
-            "Eight runes of power guard mathematical secrets.",
-            "Master these secrets to find your way home."
+            "Welcome to The Hill...",
+            "Montgomery Bell Academy's campus holds ancient mathematical secrets.",
+            "You stand at the base, ready to climb.",
+            "Before you rise eight challenges—each guarding a Rune of Knowledge.",
+            "Eight runes of power protect the mathematical arts.",
+            "Master these secrets to conquer The Hill."
         ];
 
         function init() {
@@ -3068,7 +3068,7 @@
     // INITIALIZATION
     // ============================================
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('The Island of Infinitia - Initializing...');
+        console.log('The Hill - MBA AP Calculus AB - Initializing...');
         Particles.init();
         Game.initGame();
         UI.init();
@@ -3082,7 +3082,7 @@
     });
 
     // Debug tools
-    window.InfinitiaDebug = {
+    window.TheHillDebug = {
         Game: Game,
         Locations: Locations,
         Lessons: Lessons,

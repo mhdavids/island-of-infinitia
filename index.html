@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Island of Infinitia - AP Calculus AB Adventure</title>
+    <title>The Hill - MBA AP Calculus AB Adventure</title>
 
     <!-- KaTeX for math rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -21,16 +21,16 @@
         <!-- Title Screen -->
         <div id="title-screen" class="screen active">
             <div class="title-content">
-                <h1 class="game-title">The Island of Infinitia</h1>
-                <p class="subtitle">An AP Calculus AB Adventure</p>
+                <h1 class="game-title">The Hill</h1>
+                <p class="subtitle">An MBA AP Calculus AB Adventure</p>
                 <div class="title-art">
-                    <div class="island-silhouette"></div>
+                    <div class="hill-silhouette"></div>
                 </div>
                 <div class="menu-buttons">
-                    <button id="new-game-btn" class="menu-btn">New Journey</button>
+                    <button id="new-game-btn" class="menu-btn">Begin Your Journey</button>
                     <button id="continue-btn" class="menu-btn" disabled>Continue</button>
                 </div>
-                <p class="flavor-text">Master the ancient mathematical secrets. Collect the eight runes. Escape the island.</p>
+                <p class="flavor-text">Master the eight mathematical arts. Collect all the runes. Conquer The Hill.</p>
             </div>
         </div>
 
@@ -45,62 +45,62 @@
         <!-- Map Screen -->
         <div id="map-screen" class="screen">
             <div class="map-header">
-                <h2>The Island of Infinitia</h2>
+                <h2>The Hill</h2>
                 <div class="rune-counter">
                     <span id="runes-collected">0</span>/8 Runes Collected
                 </div>
             </div>
-            <div class="island-map">
-                <div class="map-region" data-region="tidal-observatory">
-                    <div class="region-icon">🌊</div>
-                    <div class="region-name">The Tidal Observatory</div>
+            <div class="campus-map">
+                <div class="map-region" data-region="library">
+                    <div class="region-icon">📚</div>
+                    <div class="region-name">The Library</div>
                     <div class="region-status">Unit 1: Limits & Continuity</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="clocktower">
-                    <div class="region-icon">⚙️</div>
-                    <div class="region-name">The Clocktower</div>
+                <div class="map-region locked" data-region="bell-tower">
+                    <div class="region-icon">🔔</div>
+                    <div class="region-name">The Bell Tower</div>
                     <div class="region-status">Unit 2: Differentiation Basics</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="greenhouse">
-                    <div class="region-icon">🌿</div>
-                    <div class="region-name">The Greenhouse</div>
+                <div class="map-region locked" data-region="quad">
+                    <div class="region-icon">🌳</div>
+                    <div class="region-name">The Quad</div>
                     <div class="region-status">Unit 3: Chain Rule & Implicit</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="weather-station">
-                    <div class="region-icon">🌤️</div>
-                    <div class="region-name">The Weather Station</div>
+                <div class="map-region locked" data-region="science-wing">
+                    <div class="region-icon">🔬</div>
+                    <div class="region-name">The Science Wing</div>
                     <div class="region-status">Unit 4: Contextual Applications</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="mining-caverns">
-                    <div class="region-icon">⛏️</div>
-                    <div class="region-name">The Mining Caverns</div>
+                <div class="map-region locked" data-region="archives">
+                    <div class="region-icon">📜</div>
+                    <div class="region-name">The Archives</div>
                     <div class="region-status">Unit 5: Analytical Applications</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="reservoir">
-                    <div class="region-icon">💧</div>
-                    <div class="region-name">The Reservoir</div>
+                <div class="map-region locked" data-region="natatorium">
+                    <div class="region-icon">🏊</div>
+                    <div class="region-name">The Natatorium</div>
                     <div class="region-status">Unit 6: Integration</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="alchemist-lab">
+                <div class="map-region locked" data-region="chem-lab">
                     <div class="region-icon">⚗️</div>
-                    <div class="region-name">The Alchemist's Lab</div>
+                    <div class="region-name">The Chemistry Lab</div>
                     <div class="region-status">Unit 7: Differential Equations</div>
                     <div class="rune-indicator"></div>
                 </div>
-                <div class="map-region locked" data-region="architect-ruins">
-                    <div class="region-icon">🏛️</div>
-                    <div class="region-name">The Architect's Ruins</div>
+                <div class="map-region locked" data-region="stadium">
+                    <div class="region-icon">🏟️</div>
+                    <div class="region-name">The Stadium</div>
                     <div class="region-status">Unit 8: Applications of Integration</div>
                     <div class="rune-indicator"></div>
                 </div>
             </div>
-            <button id="open-portal-btn" class="menu-btn hidden">Open the Portal</button>
+            <button id="open-portal-btn" class="menu-btn hidden">Claim Victory</button>
         </div>
 
         <!-- Region Screen -->
@@ -167,9 +167,9 @@
         <!-- Victory Screen -->
         <div id="victory-screen" class="screen">
             <div class="victory-content">
-                <h1>The Portal Opens</h1>
+                <h1>You've Conquered The Hill!</h1>
                 <div class="portal-animation"></div>
-                <p class="victory-text">You have mastered the eight mathematical arts of Infinitia. The ancient portal recognizes your wisdom and grants you passage home.</p>
+                <p class="victory-text">You have mastered the eight mathematical arts of The Hill. Your dedication and wisdom have earned you the title of Calculus Champion.</p>
                 <p class="completion-stats">
                     <span id="total-problems-solved">0</span> problems solved<br>
                     <span id="total-topics-mastered">0</span> topics mastered
