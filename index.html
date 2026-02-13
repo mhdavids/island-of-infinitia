@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Island of Infinitia - AP Calculus AB Adventure</title>
+
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Game styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Particle canvas overlay -->
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="game-container">
+        <!-- Title Screen -->
+        <div id="title-screen" class="screen active">
+            <div class="title-content">
+                <h1 class="game-title">The Island of Infinitia</h1>
+                <p class="subtitle">An AP Calculus AB Adventure</p>
+                <div class="title-art">
+                    <div class="island-silhouette"></div>
+                </div>
+                <div class="menu-buttons">
+                    <button id="new-game-btn" class="menu-btn">New Journey</button>
+                    <button id="continue-btn" class="menu-btn" disabled>Continue</button>
+                </div>
+                <p class="flavor-text">Master the ancient mathematical secrets. Collect the eight runes. Escape the island.</p>
+            </div>
+        </div>
+
+        <!-- Intro Cutscene -->
+        <div id="intro-screen" class="screen">
+            <div class="cutscene-content">
+                <div id="intro-text" class="story-text"></div>
+                <button id="skip-intro-btn" class="subtle-btn">Skip</button>
+            </div>
+        </div>
+
+        <!-- Map Screen -->
+        <div id="map-screen" class="screen">
+            <div class="map-header">
+                <h2>The Island of Infinitia</h2>
+                <div class="rune-counter">
+                    <span id="runes-collected">0</span>/8 Runes Collected
+                </div>
+            </div>
+            <div class="island-map">
+                <div class="map-region" data-region="tidal-observatory">
+                    <div class="region-icon">🌊</div>
+                    <div class="region-name">The Tidal Observatory</div>
+                    <div class="region-status">Unit 1: Limits & Continuity</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="clocktower">
+                    <div class="region-icon">⚙️</div>
+                    <div class="region-name">The Clocktower</div>
+                    <div class="region-status">Unit 2: Differentiation Basics</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="greenhouse">
+                    <div class="region-icon">🌿</div>
+                    <div class="region-name">The Greenhouse</div>
+                    <div class="region-status">Unit 3: Chain Rule & Implicit</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="weather-station">
+                    <div class="region-icon">🌤️</div>
+                    <div class="region-name">The Weather Station</div>
+                    <div class="region-status">Unit 4: Contextual Applications</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="mining-caverns">
+                    <div class="region-icon">⛏️</div>
+                    <div class="region-name">The Mining Caverns</div>
+                    <div class="region-status">Unit 5: Analytical Applications</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="reservoir">
+                    <div class="region-icon">💧</div>
+                    <div class="region-name">The Reservoir</div>
+                    <div class="region-status">Unit 6: Integration</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="alchemist-lab">
+                    <div class="region-icon">⚗️</div>
+                    <div class="region-name">The Alchemist's Lab</div>
+                    <div class="region-status">Unit 7: Differential Equations</div>
+                    <div class="rune-indicator"></div>
+                </div>
+                <div class="map-region locked" data-region="architect-ruins">
+                    <div class="region-icon">🏛️</div>
+                    <div class="region-name">The Architect's Ruins</div>
+                    <div class="region-status">Unit 8: Applications of Integration</div>
+                    <div class="rune-indicator"></div>
+                </div>
+            </div>
+            <button id="open-portal-btn" class="menu-btn hidden">Open the Portal</button>
+        </div>
+
+        <!-- Region Screen -->
+        <div id="region-screen" class="screen">
+            <div class="region-header">
+                <button id="back-to-map-btn" class="nav-btn">← Map</button>
+                <h2 id="region-title"></h2>
+                <div class="region-progress">
+                    <span id="topics-mastered">0</span>/<span id="topics-total">0</span> Topics Mastered
+                </div>
+            </div>
+            <div id="region-description" class="region-intro"></div>
+            <div id="topics-grid" class="topics-container"></div>
+        </div>
+
+        <!-- Lesson Screen -->
+        <div id="lesson-screen" class="screen">
+            <div class="lesson-header">
+                <button id="back-to-region-btn" class="nav-btn">← Back</button>
+                <h2 id="lesson-title"></h2>
+            </div>
+            <div id="lesson-content" class="lesson-body"></div>
+            <div class="lesson-footer">
+                <button id="start-practice-btn" class="menu-btn">Prove Your Mastery</button>
+            </div>
+        </div>
+
+        <!-- Puzzle Screen -->
+        <div id="puzzle-screen" class="screen">
+            <div class="puzzle-header">
+                <button id="back-to-lesson-btn" class="nav-btn">← Lesson</button>
+                <h2 id="puzzle-topic-title"></h2>
+                <div class="mastery-tracker">
+                    <span>Streak: </span>
+                    <div id="streak-dots" class="streak-container"></div>
+                </div>
+            </div>
+            <div id="puzzle-container" class="puzzle-body">
+                <div id="puzzle-stem" class="puzzle-question"></div>
+                <div id="puzzle-choices" class="puzzle-options"></div>
+                <div id="puzzle-input-area" class="puzzle-input hidden">
+                    <input type="text" id="numerical-answer" placeholder="Enter your answer">
+                    <button id="submit-numerical-btn" class="submit-btn">Submit</button>
+                </div>
+            </div>
+            <div id="puzzle-feedback" class="feedback-area hidden">
+                <div id="feedback-result"></div>
+                <div id="feedback-explanation"></div>
+                <button id="next-puzzle-btn" class="menu-btn">Continue</button>
+            </div>
+        </div>
+
+        <!-- Rune Acquired Screen -->
+        <div id="rune-screen" class="screen">
+            <div class="rune-celebration">
+                <div class="rune-glow"></div>
+                <div id="rune-symbol" class="rune-display"></div>
+                <h2>Rune Acquired!</h2>
+                <p id="rune-message"></p>
+                <button id="claim-rune-btn" class="menu-btn">Claim Rune</button>
+            </div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victory-screen" class="screen">
+            <div class="victory-content">
+                <h1>The Portal Opens</h1>
+                <div class="portal-animation"></div>
+                <p class="victory-text">You have mastered the eight mathematical arts of Infinitia. The ancient portal recognizes your wisdom and grants you passage home.</p>
+                <p class="completion-stats">
+                    <span id="total-problems-solved">0</span> problems solved<br>
+                    <span id="total-topics-mastered">0</span> topics mastered
+                </p>
+                <button id="credits-btn" class="menu-btn">View Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements (optional, files not included) -->
+    <audio id="ambient-audio" loop></audio>
+    <audio id="sfx-correct"></audio>
+    <audio id="sfx-incorrect"></audio>
+    <audio id="sfx-rune"></audio>
+
+    <!-- Game scripts -->
+    <script src="js/bundle.js"></script>
+</body>
+</html>
