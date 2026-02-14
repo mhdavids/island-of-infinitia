@@ -1824,7 +1824,7 @@
             { topic: '1.16', type: 'multiple_choice', stem: 'IVT guarantees existence but NOT:', choices: ['That $c$ exists', 'What $c$ equals exactly', 'That $f(c) = k$', 'All above'], correct: 1, explanation: 'IVT is existence theorem—doesn\'t give exact value.' },
             { topic: '1.16', type: 'multiple_choice', stem: 'Can\'t use IVT on $\\frac{1}{x}$ on $[-1, 1]$ because:', choices: ['$f$ never $= 0$', '$f$ not continuous on $[-1, 1]$', '$0$ not between $f(-1)$ and $f(1)$', 'Both A and B'], correct: 3, explanation: 'Two problems: discontinuous at $0$, and $1/x$ never equals $0$.' },
             { topic: '1.16', type: 'multiple_choice', stem: '$f$ continuous on $[2, 5]$, $f(2) = 7$, $f(5) = 3$. NOT guaranteed:', choices: ['$f(c) = 4$', '$f(c) = 5$', '$f(c) = 6$', '$f(c) = 8$'], correct: 3, explanation: 'IVT guarantees values between $3$ and $7$. $8$ is outside.' },
-            { topic: '1.16', type: 'multiple_choice', stem: '$g$ continuous on $[0, 2]$ with $g(0) = g(2) = 1$. Conclude:', choices: ['$g$ has root', '$g(1) = 1$', 'Nothing specific', '$g$ achieves all values between min and max'], correct: 3, explanation: 'IVT: continuous function takes all values between its min and max.' },
+            { topic: '1.16', type: 'multiple_choice', stem: 'If $g$ is continuous on $[0, 2]$ with $g(0) = 3$ and $g(2) = 7$, what can you conclude by IVT?', choices: ['$g$ has a root', '$g(1) = 5$', '$g(c) = 5$ for some $c$ in $(0, 2)$', '$g$ is differentiable'], correct: 2, explanation: 'Since 5 is between 3 and 7, IVT guarantees some $c$ in $(0, 2)$ where $g(c) = 5$.' },
 
             // ========== UNIT 2: DIFFERENTIATION ==========
             // Topic 2.1
