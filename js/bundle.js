@@ -383,11 +383,47 @@
             try {
                 gameState.lastPlayed = Date.now();
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+
+                // Also save to cloud if signed in
+                if (Auth.isSignedIn()) {
+                    CloudSave.saveProgress(Auth.getUserId(), gameState);
+                }
+
                 return true;
             } catch (e) {
                 console.error('Failed to save game:', e);
                 return false;
             }
+        }
+
+        function loadFromCloud() {
+            if (!Auth.isSignedIn()) {
+                return Promise.resolve(null);
+            }
+
+            return CloudSave.loadProgress(Auth.getUserId())
+                .then(function(cloudState) {
+                    if (cloudState) {
+                        // Compare cloud and local - use whichever is newer
+                        const localState = loadFromStorage();
+                        if (!localState || cloudState.lastPlayed > localState.lastPlayed) {
+                            gameState = cloudState;
+                            // Also update local storage
+                            localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+                            console.log('Using cloud save (newer)');
+                        } else {
+                            console.log('Using local save (newer)');
+                            // Push local to cloud since it's newer
+                            CloudSave.saveProgress(Auth.getUserId(), localState);
+                        }
+                        return gameState;
+                    }
+                    return null;
+                });
+        }
+
+        function syncWithCloud() {
+            return loadFromCloud();
         }
 
         function initGame() {
@@ -587,7 +623,9 @@
             hasSeenIntro: hasSeenIntro,
             markGameCompleted: markGameCompleted,
             getStats: getStats,
-            isRegionAvailable: isRegionAvailable
+            isRegionAvailable: isRegionAvailable,
+            loadFromCloud: loadFromCloud,
+            syncWithCloud: syncWithCloud
         };
     })();
 
@@ -785,6 +823,212 @@
             submitScore: submitScore,
             getTopScores: getTopScores,
             hasSubmitted: hasSubmitted
+        };
+    })();
+
+    // ============================================
+    // AUTH MODULE
+    // ============================================
+    const Auth = (function() {
+        let auth = null;
+        let currentUser = null;
+        let onAuthChangeCallback = null;
+        const ALLOWED_DOMAIN = 'montgomerybell.edu';
+
+        function init() {
+            if (typeof firebase === 'undefined' || !firebase.auth) {
+                console.warn('Firebase Auth SDK not loaded');
+                return false;
+            }
+
+            auth = firebase.auth();
+
+            // Listen for auth state changes
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    // Check if email is from allowed domain
+                    const email = user.email || '';
+                    const domain = email.split('@')[1];
+
+                    if (domain === ALLOWED_DOMAIN) {
+                        currentUser = user;
+                        console.log('Signed in as:', user.email);
+                    } else {
+                        // Sign out users from other domains
+                        console.warn('Access restricted to @' + ALLOWED_DOMAIN + ' accounts');
+                        signOut();
+                        currentUser = null;
+                        if (onAuthChangeCallback) {
+                            onAuthChangeCallback(null, 'Please use your @' + ALLOWED_DOMAIN + ' account');
+                        }
+                        return;
+                    }
+                } else {
+                    currentUser = null;
+                }
+
+                if (onAuthChangeCallback) {
+                    onAuthChangeCallback(currentUser);
+                }
+            });
+
+            return true;
+        }
+
+        function signInWithGoogle() {
+            if (!auth) {
+                console.error('Auth not initialized');
+                return Promise.reject(new Error('Auth not initialized'));
+            }
+
+            const provider = new firebase.auth.GoogleAuthProvider();
+            // Hint to use school account
+            provider.setCustomParameters({
+                hd: ALLOWED_DOMAIN
+            });
+
+            return auth.signInWithPopup(provider)
+                .then(function(result) {
+                    // Domain check happens in onAuthStateChanged
+                    return result.user;
+                })
+                .catch(function(error) {
+                    console.error('Sign-in error:', error);
+                    throw error;
+                });
+        }
+
+        function signOut() {
+            if (!auth) return Promise.resolve();
+            return auth.signOut();
+        }
+
+        function getCurrentUser() {
+            return currentUser;
+        }
+
+        function isSignedIn() {
+            return currentUser !== null;
+        }
+
+        function getUserId() {
+            return currentUser ? currentUser.uid : null;
+        }
+
+        function getDisplayName() {
+            if (!currentUser) return null;
+            // Try to get first name from display name
+            const displayName = currentUser.displayName || currentUser.email.split('@')[0];
+            return displayName.split(' ')[0]; // First name only
+        }
+
+        function getEmail() {
+            return currentUser ? currentUser.email : null;
+        }
+
+        function onAuthStateChanged(callback) {
+            onAuthChangeCallback = callback;
+            // If already have a user, call immediately
+            if (currentUser) {
+                callback(currentUser);
+            }
+        }
+
+        return {
+            init: init,
+            signInWithGoogle: signInWithGoogle,
+            signOut: signOut,
+            getCurrentUser: getCurrentUser,
+            isSignedIn: isSignedIn,
+            getUserId: getUserId,
+            getDisplayName: getDisplayName,
+            getEmail: getEmail,
+            onAuthStateChanged: onAuthStateChanged
+        };
+    })();
+
+    // ============================================
+    // CLOUD SAVE MODULE
+    // ============================================
+    const CloudSave = (function() {
+        let db = null;
+        let saveTimeout = null;
+        const SAVE_DELAY = 2000; // Debounce saves by 2 seconds
+
+        function init() {
+            if (typeof firebase === 'undefined' || !firebase.database) {
+                console.warn('Firebase Database not available for cloud save');
+                return false;
+            }
+            db = firebase.database();
+            return true;
+        }
+
+        function saveProgress(userId, gameState) {
+            if (!db || !userId) return Promise.resolve(false);
+
+            // Debounce saves
+            if (saveTimeout) {
+                clearTimeout(saveTimeout);
+            }
+
+            return new Promise(function(resolve) {
+                saveTimeout = setTimeout(function() {
+                    db.ref('players/' + userId + '/progress').set({
+                        gameState: gameState,
+                        lastSaved: Date.now()
+                    })
+                    .then(function() {
+                        console.log('Progress saved to cloud');
+                        resolve(true);
+                    })
+                    .catch(function(error) {
+                        console.error('Failed to save progress:', error);
+                        resolve(false);
+                    });
+                }, SAVE_DELAY);
+            });
+        }
+
+        function loadProgress(userId) {
+            if (!db || !userId) return Promise.resolve(null);
+
+            return db.ref('players/' + userId + '/progress')
+                .once('value')
+                .then(function(snapshot) {
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        console.log('Progress loaded from cloud');
+                        return data.gameState;
+                    }
+                    return null;
+                })
+                .catch(function(error) {
+                    console.error('Failed to load progress:', error);
+                    return null;
+                });
+        }
+
+        function deleteProgress(userId) {
+            if (!db || !userId) return Promise.resolve(false);
+
+            return db.ref('players/' + userId + '/progress')
+                .remove()
+                .then(function() {
+                    console.log('Cloud progress deleted');
+                    return true;
+                })
+                .catch(function(error) {
+                    console.error('Failed to delete progress:', error);
+                    return false;
+                });
+        }
+
+        return {
+            init: init,
+            saveProgress: saveProgress,
+            loadProgress: loadProgress,
+            deleteProgress: deleteProgress
         };
     })();
 
@@ -2327,6 +2571,10 @@
             document.getElementById('player-name-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') submitScoreToLeaderboard();
             });
+
+            // Auth event listeners
+            document.getElementById('google-sign-in-btn').addEventListener('click', handleSignIn);
+            document.getElementById('sign-out-btn').addEventListener('click', handleSignOut);
         }
 
         function updateContinueButton() {
@@ -2978,6 +3226,92 @@
         }
 
         // ============================================
+        // AUTHENTICATION FUNCTIONS
+        // ============================================
+        function handleSignIn() {
+            const signInBtn = document.getElementById('google-sign-in-btn');
+            signInBtn.disabled = true;
+            signInBtn.innerHTML = '<span class="google-icon">G</span> Signing in...';
+
+            Auth.signInWithGoogle()
+                .then(function(user) {
+                    // Auth state change handler will update UI
+                })
+                .catch(function(error) {
+                    console.error('Sign-in failed:', error);
+                    signInBtn.disabled = false;
+                    signInBtn.innerHTML = '<span class="google-icon">G</span> Sign in with Google';
+
+                    // Show error to user
+                    var hint = document.querySelector('.auth-hint');
+                    if (hint) {
+                        hint.textContent = 'Sign-in failed. Please try again.';
+                        hint.style.color = 'var(--accent-red)';
+                    }
+                });
+        }
+
+        function handleSignOut() {
+            Auth.signOut().then(function() {
+                updateAuthUI(null);
+                showScreen('title-screen');
+            });
+        }
+
+        function updateAuthUI(user) {
+            const signedOutSection = document.getElementById('auth-signed-out');
+            const signedInSection = document.getElementById('auth-signed-in');
+            const signInBtn = document.getElementById('google-sign-in-btn');
+
+            if (user) {
+                // User is signed in
+                signedOutSection.classList.add('hidden');
+                signedInSection.classList.remove('hidden');
+
+                const displayName = Auth.getDisplayName();
+                document.getElementById('user-display-name').textContent = 'Welcome, ' + displayName + '!';
+                document.getElementById('map-user-name').textContent = displayName;
+
+                // Sync progress from cloud
+                Game.syncWithCloud().then(function() {
+                    updateContinueButton();
+                    updateMapState();
+                });
+            } else {
+                // User is signed out
+                signedOutSection.classList.remove('hidden');
+                signedInSection.classList.add('hidden');
+
+                // Reset sign-in button
+                signInBtn.disabled = false;
+                signInBtn.innerHTML = '<span class="google-icon">G</span> Sign in with Google';
+
+                // Reset hint
+                var hint = document.querySelector('.auth-hint');
+                if (hint) {
+                    hint.textContent = 'Use your @montgomerybell.edu account';
+                    hint.style.color = '';
+                }
+            }
+        }
+
+        function initAuth() {
+            if (Auth.init()) {
+                Auth.onAuthStateChanged(function(user, error) {
+                    if (error) {
+                        // Show domain restriction error
+                        var hint = document.querySelector('.auth-hint');
+                        if (hint) {
+                            hint.textContent = error;
+                            hint.style.color = 'var(--accent-red)';
+                        }
+                    }
+                    updateAuthUI(user);
+                });
+            }
+        }
+
+        // ============================================
         // ANIMATED STEP-BY-STEP EXAMPLES
         // ============================================
         function initAnimatedExamples() {
@@ -3458,7 +3792,9 @@
             initAnimatedExamples: initAnimatedExamples,
             initLimitVisualizers: initLimitVisualizers,
             initDerivativeGraphers: initDerivativeGraphers,
-            renderMatchingPuzzle: renderMatchingPuzzle
+            renderMatchingPuzzle: renderMatchingPuzzle,
+            initAuth: initAuth,
+            updateAuthUI: updateAuthUI
         };
     })();
 
@@ -3483,19 +3819,28 @@
         Particles.init();
         Game.initGame();
 
-        // Initialize Firebase leaderboard if configured
+        // Initialize Firebase if configured
         if (FIREBASE_CONFIG.apiKey) {
+            // Initialize Firebase app
+            if (typeof firebase !== 'undefined' && firebase.apps.length === 0) {
+                firebase.initializeApp(FIREBASE_CONFIG);
+            }
+
+            // Initialize leaderboard
             var leaderboardReady = Leaderboard.init(FIREBASE_CONFIG);
             if (leaderboardReady) {
                 console.log('Leaderboard initialized');
-            } else {
-                console.warn('Leaderboard initialization failed');
             }
+
+            // Initialize cloud save
+            CloudSave.init();
+            console.log('Cloud save initialized');
         } else {
-            console.log('Leaderboard disabled - Firebase not configured');
+            console.log('Firebase not configured');
         }
 
         UI.init();
+        UI.initAuth(); // Initialize authentication UI
         UI.showScreen('title-screen');
 
         // Log puzzle counts
@@ -3515,6 +3860,8 @@
         UI: UI,
         Leaderboard: Leaderboard,
         NameFilter: NameFilter,
+        Auth: Auth,
+        CloudSave: CloudSave,
         resetGame: function() {
             Game.clearSave();
             location.reload();

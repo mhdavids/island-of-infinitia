@@ -26,9 +26,23 @@
                 <div class="title-art">
                     <div class="hill-silhouette"></div>
                 </div>
-                <div class="menu-buttons">
-                    <button id="new-game-btn" class="menu-btn">Begin Your Journey</button>
-                    <button id="continue-btn" class="menu-btn" disabled>Continue</button>
+                <!-- Signed Out State -->
+                <div id="auth-signed-out" class="auth-section">
+                    <button id="google-sign-in-btn" class="menu-btn google-btn">
+                        <span class="google-icon">G</span> Sign in with Google
+                    </button>
+                    <p class="auth-hint">Use your @montgomerybell.edu account</p>
+                </div>
+                <!-- Signed In State -->
+                <div id="auth-signed-in" class="auth-section hidden">
+                    <div class="user-info">
+                        <span id="user-display-name">Student</span>
+                    </div>
+                    <div class="menu-buttons">
+                        <button id="new-game-btn" class="menu-btn">Begin Your Journey</button>
+                        <button id="continue-btn" class="menu-btn" disabled>Continue</button>
+                    </div>
+                    <button id="sign-out-btn" class="subtle-btn">Sign Out</button>
                 </div>
                 <p class="flavor-text">Master the eight mathematical arts. Collect all the runes. Conquer The Hill.</p>
             </div>
@@ -46,6 +60,9 @@
         <div id="map-screen" class="screen">
             <div class="map-header">
                 <h2>The Hill</h2>
+                <div class="user-badge" id="map-user-badge">
+                    <span id="map-user-name">Student</span>
+                </div>
                 <div class="points-display">
                     <span id="total-points">0</span> pts
                 </div>
@@ -219,8 +236,9 @@
     <audio id="sfx-incorrect"></audio>
     <audio id="sfx-rune"></audio>
 
-    <!-- Firebase SDK for Leaderboard -->
+    <!-- Firebase SDK for Leaderboard and Auth -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
 
     <!-- Game scripts -->
