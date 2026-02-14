@@ -1702,6 +1702,27 @@ body {
     color: var(--mba-yellow);
 }
 
+.leaderboard-footer {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+}
+
+.your-score {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.your-score span {
+    color: var(--mba-yellow);
+    font-weight: bold;
+}
+
 /* ============================================
    MODAL STYLES
    ============================================ */

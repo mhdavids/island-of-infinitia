@@ -2563,6 +2563,7 @@
             document.getElementById('view-leaderboard-btn').addEventListener('click', showLeaderboard);
             document.getElementById('back-from-leaderboard').addEventListener('click', function() { showScreen('map-screen'); updateMapState(); });
             document.getElementById('submit-score-btn').addEventListener('click', openNameModal);
+            document.getElementById('leaderboard-submit-btn').addEventListener('click', openNameModal);
             document.getElementById('submit-name-btn').addEventListener('click', submitScoreToLeaderboard);
             document.getElementById('cancel-name-btn').addEventListener('click', closeNameModal);
 
@@ -3094,6 +3095,10 @@
         function loadLeaderboard() {
             const container = document.getElementById('leaderboard-list');
             container.innerHTML = '<div class="leaderboard-loading">Loading scores...</div>';
+
+            // Update user's current score display
+            const stats = Game.getStats();
+            document.getElementById('leaderboard-your-score').textContent = formatPoints(stats.totalPoints);
 
             if (!Leaderboard.isReady()) {
                 container.innerHTML = '<div class="leaderboard-empty">Leaderboard requires Firebase configuration.<br>See setup instructions.</div>';
