@@ -1845,8 +1845,7 @@
             { topic: '2.2', type: 'multiple_choice', stem: '$\\frac{dy}{dx}$ is the same as:', choices: ['$y \\cdot x$', '$\\frac{y}{x}$', '$y\'$', 'None'], correct: 2, explanation: '$\\frac{dy}{dx}$ is Leibniz notation for derivative.' },
             { topic: '2.2', type: 'multiple_choice', stem: 'Using definition, $\\frac{d}{dx}(x^2) =$', choices: ['$x$', '$2x$', '$x^2$', '$2$'], correct: 1, explanation: '$\\lim_{h \\to 0} \\frac{(x+h)^2 - x^2}{h} = \\lim_{h \\to 0} (2x + h) = 2x$' },
             { topic: '2.2', type: 'multiple_choice', stem: 'If the tangent line at $(2, f(2))$ has slope $5$, then $f\'(2) =$', choices: ['$2$', '$5$', '$10$', 'Cannot determine'], correct: 1, explanation: 'Derivative at a point = slope of tangent there.' },
-            { topic: '2.2', type: 'multiple_choice', stem: 'The notation $Df(x)$ means:', choices: ['$f(x) \\cdot D$', '$f\'(x)$', 'Distance', 'Difference'], correct: 1, explanation: '$D$ is the differential operator; $Df(x) = f\'(x)$.' },
-
+            
             // Topic 2.3
             { topic: '2.3', type: 'multiple_choice', stem: 'To estimate $f\'(3)$ from a table, use:', choices: ['$f(3)$', '$\\frac{f(3.1) - f(2.9)}{0.2}$', '$f(3.1) - f(2.9)$', '$f(4) - f(2)$'], correct: 1, explanation: 'Symmetric difference quotient gives best estimate.' },
             { topic: '2.3', type: 'multiple_choice', stem: 'If $f(2) = 5$, $f(2.01) = 5.03$, estimate $f\'(2)$:', choices: ['$0.03$', '$3$', '$5$', '$0.01$'], correct: 1, explanation: '$\\frac{5.03 - 5}{0.01} = \\frac{0.03}{0.01} = 3$' },
