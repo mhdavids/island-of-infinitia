@@ -2307,20 +2307,16 @@
             { topic: '7.2', type: 'multiple_choice', stem: 'Does $y = x^2$ solve $y\' = 2x$?', choices: ['Yes', 'No', 'Only for $x > 0$', 'Only if $y(0) = 0$'], correct: 0, explanation: '$y\' = 2x$ ✓' },
             { topic: '7.2', type: 'multiple_choice', stem: 'Verify $y = \\sin x$ solves $y\'\' + y = 0$:', choices: ['$\\cos x + \\sin x = 0$', '$-\\sin x + \\sin x = 0$', '$\\sin x = 0$', 'Doesn\'t solve'], correct: 1, explanation: '$y\'\' = -\\sin x$, so $-\\sin x + \\sin x = 0$ ✓' },
             { topic: '7.2', type: 'multiple_choice', stem: 'Does $y = Ce^x$ solve $y\' = y$?', choices: ['Only for $C = 1$', 'For any constant $C$', 'Only for $C > 0$', 'Never'], correct: 1, explanation: '$y\' = Ce^x = y$ for any $C$.' },
-            { topic: '7.2', type: 'multiple_choice', stem: 'General solution has:', choices: ['No constants', 'One specific value', 'Arbitrary constant(s)', 'Only integer values'], correct: 2, explanation: 'General solution includes arbitrary constant $C$.' },
-            { topic: '7.2', type: 'multiple_choice', stem: 'Verify $y = \\ln x$ solves $xy\' = 1$:', choices: ['$x \\cdot 1 = 1$', '$x \\cdot \\frac{1}{x} = 1$', '$\\ln x = 1$', 'Doesn\'t solve'], correct: 1, explanation: '$y\' = 1/x$, so $x \\cdot \\frac{1}{x} = 1$ ✓' },
+                        { topic: '7.2', type: 'multiple_choice', stem: 'Verify $y = \\ln x$ solves $xy\' = 1$:', choices: ['$x \\cdot 1 = 1$', '$x \\cdot \\frac{1}{x} = 1$', '$\\ln x = 1$', 'Doesn\'t solve'], correct: 1, explanation: '$y\' = 1/x$, so $x \\cdot \\frac{1}{x} = 1$ ✓' },
             { topic: '7.2', type: 'multiple_choice', stem: 'Is $y = x^2 + C$ general solution to $y\' = 2x$?', choices: ['Yes', 'No, should be $y = x^2$', 'No, wrong derivative', 'Only for $C = 0$'], correct: 0, explanation: 'Any $C$ works since $(x^2 + C)\' = 2x$.' },
-            { topic: '7.2', type: 'multiple_choice', stem: 'To verify, we need:', choices: ['Only the DE', 'Only the proposed solution', 'Both DE and proposed solution', 'Neither'], correct: 2, explanation: 'Substitute proposed solution into DE and check.' },
-
+            
             // Topic 7.3: Slope Fields
             { topic: '7.3', type: 'multiple_choice', stem: 'Slope field for $\\frac{dy}{dx} = y$: at $(2, 0)$, slope is:', choices: ['$2$', '$0$', '$-2$', 'Undefined'], correct: 1, explanation: 'Slope $= y = 0$' },
             { topic: '7.3', type: 'multiple_choice', stem: 'For $\\frac{dy}{dx} = x$, slopes are same along:', choices: ['Horizontal lines', 'Vertical lines', 'Diagonal lines', 'Curves'], correct: 1, explanation: 'Same $x$ gives same slope.' },
             { topic: '7.3', type: 'multiple_choice', stem: 'For $\\frac{dy}{dx} = y$, slopes are same along:', choices: ['Horizontal lines', 'Vertical lines', 'Circles', 'Parabolas'], correct: 0, explanation: 'Same $y$ gives same slope.' },
             { topic: '7.3', type: 'multiple_choice', stem: 'Horizontal segments in slope field mean:', choices: ['$\\frac{dy}{dx} = 0$', '$\\frac{dy}{dx} = 1$', '$y = 0$', '$x = 0$'], correct: 0, explanation: 'Horizontal = zero slope.' },
             { topic: '7.3', type: 'multiple_choice', stem: 'For $\\frac{dy}{dx} = x + y$, at $(1, -1)$:', choices: ['Slope = 2', 'Slope = 0', 'Slope = -2', 'Slope = 1'], correct: 1, explanation: '$1 + (-1) = 0$' },
-            { topic: '7.3', type: 'multiple_choice', stem: 'Slope field shows:', choices: ['Actual solutions', 'Direction at each point', 'Only one solution', 'Integrals'], correct: 1, explanation: 'Each segment shows local direction of solution.' },
-            { topic: '7.3', type: 'multiple_choice', stem: 'Steep segments indicate:', choices: ['Large $|\\frac{dy}{dx}|$', 'Small $|\\frac{dy}{dx}|$', '$\\frac{dy}{dx} = 0$', 'No solution'], correct: 0, explanation: 'Steep = large magnitude slope.' },
-            { topic: '7.3', type: 'multiple_choice', stem: 'For $\\frac{dy}{dx} = 2$, slope field has:', choices: ['All horizontal', 'All same slope', 'Varying slopes', 'Vertical segments'], correct: 1, explanation: 'Constant slope everywhere.' },
+                                    { topic: '7.3', type: 'multiple_choice', stem: 'For $\\frac{dy}{dx} = 2$, slope field has:', choices: ['All horizontal', 'All same slope', 'Varying slopes', 'Vertical segments'], correct: 1, explanation: 'Constant slope everywhere.' },
 
             // Topic 7.4: Reasoning with Slope Fields
             { topic: '7.4', type: 'multiple_choice', stem: 'Solution curves in slope field:', choices: ['Cross each other', 'Never cross', 'Are always straight', 'Are always circles'], correct: 1, explanation: 'Unique solution through each point.' },
@@ -2350,7 +2346,7 @@
             { topic: '7.7', type: 'multiple_choice', stem: 'IVP: $y\' = 2y$, $y(0) = 1$. Then $y(1) =$', choices: ['$e$', '$e^2$', '$2$', '$1$'], correct: 1, explanation: '$y = e^{2x}$, so $y(1) = e^2$.' },
             { topic: '7.7', type: 'multiple_choice', stem: 'How many solutions does an IVP typically have?', choices: ['None', 'Exactly one', 'Infinitely many', 'Two'], correct: 1, explanation: 'Initial condition picks unique solution.' },
             { topic: '7.7', type: 'multiple_choice', stem: '$y\' = -y$, $y(0) = 10$. As $t \\to \\infty$, $y \\to$', choices: ['$\\infty$', '$10$', '$0$', '$-10$'], correct: 2, explanation: '$y = 10e^{-t} \\to 0$' },
-            { topic: '7.7', type: 'multiple_choice', stem: 'If $y(2) = 8$ and $y = Ae^{3x}$, then $A =$', choices: ['$8e^{-6}$', '$8e^6$', '$8/3$', '$\\frac{8}{e^6}$'], correct: 0, explanation: '$Ae^6 = 8$, so $A = 8e^{-6}$.' },
+            { topic: '7.7', type: 'multiple_choice', stem: 'If $y(2) = 8$ and $y = Ae^{3x}$, then $A =$', choices: ['$8e^{-6}$', '$8e^6$', '$8/3$', '$8e^{-3}$'], correct: 0, explanation: '$Ae^6 = 8$, so $A = 8e^{-6}$.' },
 
             // Topic 7.8: Exponential Models
             { topic: '7.8', type: 'multiple_choice', stem: '$\\frac{dy}{dt} = 0.05y$ models:', choices: ['Linear growth', '5% continuous growth', 'Decay', 'Oscillation'], correct: 1, explanation: 'Rate = 5% of current amount.' },
@@ -2370,7 +2366,7 @@
             { topic: '8.1', type: 'multiple_choice', stem: 'If $\\int_0^6 f\\, dx = 24$, average on $[0,6]$:', choices: ['$24$', '$4$', '$6$', '$18$'], correct: 1, explanation: '$24/6 = 4$' },
             { topic: '8.1', type: 'multiple_choice', stem: 'Average of $\\sin x$ on $[0, \\pi]$:', choices: ['$0$', '$\\frac{1}{\\pi}$', '$\\frac{2}{\\pi}$', '$1$'], correct: 2, explanation: '$\\frac{1}{\\pi}\\int_0^{\\pi} \\sin x\\, dx = \\frac{2}{\\pi}$' },
             { topic: '8.1', type: 'multiple_choice', stem: 'Average value theorem guarantees:', choices: ['Max exists', '$f(c) = f_{avg}$ for some $c$', 'Min exists', '$f$ continuous'], correct: 1, explanation: 'Function attains its average value somewhere.' },
-            { topic: '8.1', type: 'multiple_choice', stem: 'Average of $x^2$ on $[0, 3]$:', choices: ['$3$', '$9$', '$\\frac{9}{3}$', '$\\frac{27}{9}$'], correct: 0, explanation: '$\\frac{1}{3} \\cdot 9 = 3$' },
+            { topic: '8.1', type: 'multiple_choice', stem: 'Average of $x^2$ on $[0, 3]$:', choices: ['$3$', '$9$', '$1$', '$\\frac{1}{3}$'], correct: 0, explanation: '$\\frac{1}{3} \\cdot 9 = 3$' },
             { topic: '8.1', type: 'multiple_choice', stem: 'If average of $f$ on $[0,4]$ is 5, then $\\int_0^4 f\\, dx =$', choices: ['$5$', '$20$', '$1.25$', '$9$'], correct: 1, explanation: '$5 \\cdot 4 = 20$' },
 
             // Topic 8.2: Motion with Integrals
@@ -2408,7 +2404,7 @@
             { topic: '8.5', type: 'multiple_choice', stem: 'Area between $x = y^2$ and $x = y + 2$:', choices: ['$\\frac{9}{2}$', '$\\frac{7}{2}$', '$4$', '$6$'], correct: 0, explanation: '$\\int_{-1}^2 [(y+2) - y^2]\\, dy = \\frac{9}{2}$' },
             { topic: '8.5', type: 'multiple_choice', stem: 'For horizontal slices, "top minus bottom" becomes:', choices: ['Left minus right', 'Right minus left', 'Still top minus bottom', 'Upper minus lower'], correct: 1, explanation: 'Right curve minus left curve.' },
             { topic: '8.5', type: 'multiple_choice', stem: 'To find $y$-bounds, solve:', choices: ['$f(x) = g(x)$', '$f(y) = g(y)$', '$\\frac{df}{dy} = \\frac{dg}{dy}$', '$y = 0$'], correct: 1, explanation: 'Find where curves intersect in $y$.' },
-            { topic: '8.5', type: 'multiple_choice', stem: 'Area right of $x = 0$, left of $x = 4 - y^2$:', choices: ['$\\frac{32}{3}$', '$16$', '$8$', '$\\frac{16}{3}$'], correct: 0, explanation: '$\\int_{-2}^2 (4 - y^2)\\, dy$' },
+            { topic: '8.5', type: 'multiple_choice', stem: 'Find the area of the region bounded by $x = 0$ and $x = 4 - y^2$:', choices: ['$\\frac{32}{3}$', '$16$', '$8$', '$\\frac{16}{3}$'], correct: 0, explanation: '$\\int_{-2}^2 (4 - y^2)\\, dy = \\frac{32}{3}$' },
             { topic: '8.5', type: 'multiple_choice', stem: 'For $x = y^2$, solving for $y$ gives:', choices: ['$y = x^2$', '$y = \\pm\\sqrt{x}$', '$y = \\sqrt{x}$', 'Can\'t solve'], correct: 1, explanation: 'Two branches: $y = \\pm\\sqrt{x}$' },
             { topic: '8.5', type: 'multiple_choice', stem: 'When is horizontal slicing easier?', choices: ['Region bounded by $x = f(y)$', 'Region bounded by $y = f(x)$', 'Always', 'Never'], correct: 0, explanation: 'When given as functions of $y$.' },
             { topic: '8.5', type: 'multiple_choice', stem: '$x = y$ and $x = 2 - y$, find $y$-intersection:', choices: ['$y = 1$', '$y = 2$', '$y = 0$', '$y = -1$'], correct: 0, explanation: '$y = 2 - y \\Rightarrow y = 1$' },
@@ -2421,11 +2417,10 @@
             { topic: '8.6', type: 'multiple_choice', stem: 'If $f > g > h$, area between $f$ and $h$:', choices: ['$\\int(f-h)$', '$\\int(f-g) + \\int(g-h)$', 'Both give same answer', '$\\int(g-h)$'], correct: 2, explanation: 'Both methods work: direct or sum of parts.' },
             { topic: '8.6', type: 'multiple_choice', stem: 'Area bounded by $y = x$, $y = -x$, $y = 2$:', choices: ['$4$', '$2$', '$8$', '$6$'], correct: 0, explanation: 'Triangle with vertices at origin and $(\\pm 2, 2)$.' },
             { topic: '8.6', type: 'multiple_choice', stem: 'For piecewise boundaries:', choices: ['Use one integral', 'Split at pieces', 'Cannot compute', 'Average the pieces'], correct: 1, explanation: 'Separate integral for each piece.' },
-            { topic: '8.6', type: 'multiple_choice', stem: 'Symmetry can:', choices: ['Never help', 'Double one-sided integral', 'Eliminate need for integrals', 'Only apply to circles'], correct: 1, explanation: 'Symmetric regions: compute half, double.' },
-
+            
             // Topic 8.7: Cross Sections (Squares/Rectangles)
             { topic: '8.7', type: 'multiple_choice', stem: 'Volume with cross sections: $V =$', choices: ['$\\int A(x)\\, dx$', '$\\pi\\int r^2\\, dx$', '$\\int f(x)\\, dx$', '$A \\cdot h$'], correct: 0, explanation: 'Integrate cross-sectional area.' },
-            { topic: '8.7', type: 'multiple_choice', stem: 'Square cross sections, side $= x$, from 0 to 3:', choices: ['$9$', '$27$', '$3$', '$81$'], correct: 0, explanation: '$\\int_0^3 x^2\\, dx = 9$' },
+            { topic: '8.7', type: 'multiple_choice', stem: 'Find the volume of a solid with square cross sections perpendicular to the x-axis, where the side length is $x$, for $0 \\leq x \\leq 3$:', choices: ['$9$', '$27$', '$3$', '$81$'], correct: 0, explanation: '$\\int_0^3 x^2\\, dx = 9$' },
             { topic: '8.7', type: 'multiple_choice', stem: 'Base: $y = \\sqrt{x}$ from 0 to 4. Square cross sections:', choices: ['$\\int_0^4 x\\, dx$', '$\\int_0^4 \\sqrt{x}\\, dx$', '$\\int_0^4 x^2\\, dx$', '$\\pi\\int_0^4 x\\, dx$'], correct: 0, explanation: 'Side $= \\sqrt{x}$, area $= x$.' },
             { topic: '8.7', type: 'multiple_choice', stem: 'Rectangle cross section, width $= f(x)$, height $= 2$:', choices: ['$A = f(x)$', '$A = 2f(x)$', '$A = f(x)^2$', '$A = 2$'], correct: 1, explanation: 'Area = width × height = $2f(x)$' },
             { topic: '8.7', type: 'multiple_choice', stem: 'Cross sections perpendicular to:', choices: ['The curve', 'The axis of integration', 'Both axes', 'Neither'], correct: 1, explanation: 'Perpendicular to axis we integrate along.' },
@@ -2440,27 +2435,22 @@
             { topic: '8.8', type: 'multiple_choice', stem: 'Cross sections are semicircles with diameter $= x$:', choices: ['$A = \\pi x^2$', '$A = \\frac{\\pi x^2}{4}$', '$A = \\frac{\\pi x^2}{8}$', '$A = \\frac{\\pi x}{2}$'], correct: 2, explanation: '$A = \\frac{\\pi d^2}{8} = \\frac{\\pi x^2}{8}$' },
             { topic: '8.8', type: 'multiple_choice', stem: 'Base from $y = 0$ to $y = 1 - x^2$. Semicircle diameter $= 1 - x^2$:', choices: ['$A = \\frac{\\pi(1-x^2)^2}{8}$', '$A = \\pi(1-x^2)$', '$A = \\frac{(1-x^2)^2}{2}$', '$A = \\pi(1-x^2)^2$'], correct: 0, explanation: 'Semicircle with diameter $d$: $A = \\frac{\\pi d^2}{8}$' },
             { topic: '8.8', type: 'multiple_choice', stem: 'Equilateral triangles, side $= 2x$. Area:', choices: ['$x^2$', '$\\sqrt{3}x^2$', '$4x^2$', '$2\\sqrt{3}x^2$'], correct: 1, explanation: '$\\frac{\\sqrt{3}}{4}(2x)^2 = \\sqrt{3}x^2$' },
-            { topic: '8.8', type: 'multiple_choice', stem: 'Cross-section shape affects:', choices: ['Bounds', 'Area formula', 'Both', 'Neither'], correct: 1, explanation: 'Different shapes have different area formulas.' },
-            { topic: '8.8', type: 'multiple_choice', stem: 'Right triangle with legs $a$ and $b$: area $=$', choices: ['$ab$', '$\\frac{ab}{2}$', '$\\sqrt{a^2+b^2}$', '$a + b$'], correct: 1, explanation: 'Half base times height.' },
+                        { topic: '8.8', type: 'multiple_choice', stem: 'Right triangle with legs $a$ and $b$: area $=$', choices: ['$ab$', '$\\frac{ab}{2}$', '$\\sqrt{a^2+b^2}$', '$a + b$'], correct: 1, explanation: 'Half base times height.' },
 
             // Topic 8.9: Disc Method (x or y axis)
             { topic: '8.9', type: 'multiple_choice', stem: 'Disc method around x-axis: $V =$', choices: ['$\\int \\pi r\\, dx$', '$\\int \\pi r^2\\, dx$', '$\\int 2\\pi r\\, dx$', '$\\int r^2\\, dx$'], correct: 1, explanation: 'Area of disc is $\\pi r^2$.' },
             { topic: '8.9', type: 'multiple_choice', stem: '$y = x$ from 0 to 2, around x-axis:', choices: ['$\\frac{8\\pi}{3}$', '$4\\pi$', '$2\\pi$', '$\\frac{4\\pi}{3}$'], correct: 0, explanation: '$\\pi\\int_0^2 x^2\\, dx = \\frac{8\\pi}{3}$' },
             { topic: '8.9', type: 'multiple_choice', stem: '$y = \\sqrt{x}$ from 0 to 4, around x-axis:', choices: ['$8\\pi$', '$4\\pi$', '$16\\pi$', '$2\\pi$'], correct: 0, explanation: '$\\pi\\int_0^4 x\\, dx = 8\\pi$' },
-            { topic: '8.9', type: 'multiple_choice', stem: 'Around y-axis, use:', choices: ['$\\pi\\int [f(x)]^2\\, dx$', '$\\pi\\int [g(y)]^2\\, dy$', 'Either works', 'Neither'], correct: 1, explanation: 'Express $x$ as function of $y$.' },
-            { topic: '8.9', type: 'multiple_choice', stem: '$x = y^2$ from $y = 0$ to $y = 2$, around y-axis:', choices: ['$\\frac{32\\pi}{5}$', '$\\frac{16\\pi}{5}$', '$8\\pi$', '$4\\pi$'], correct: 0, explanation: '$\\pi\\int_0^2 y^4\\, dy = \\frac{32\\pi}{5}$' },
+                        { topic: '8.9', type: 'multiple_choice', stem: '$x = y^2$ from $y = 0$ to $y = 2$, around y-axis:', choices: ['$\\frac{32\\pi}{5}$', '$\\frac{16\\pi}{5}$', '$8\\pi$', '$4\\pi$'], correct: 0, explanation: '$\\pi\\int_0^2 y^4\\, dy = \\frac{32\\pi}{5}$' },
             { topic: '8.9', type: 'multiple_choice', stem: 'Radius in disc method equals:', choices: ['$x$', '$y$', 'Distance to axis', 'Thickness'], correct: 2, explanation: 'Radius = perpendicular distance to axis.' },
             { topic: '8.9', type: 'multiple_choice', stem: '$y = e^x$ from 0 to 1, around x-axis:', choices: ['$\\frac{\\pi(e^2-1)}{2}$', '$\\pi(e-1)$', '$\\pi e^2$', '$\\frac{\\pi}{2}$'], correct: 0, explanation: '$\\pi\\int_0^1 e^{2x}\\, dx$' },
             { topic: '8.9', type: 'multiple_choice', stem: 'Disc method produces solids that are:', choices: ['Hollow', 'Solid', 'Partial', 'Flat'], correct: 1, explanation: 'Full discs, no holes.' },
 
             // Topic 8.10: Disc Around Other Axes
-            { topic: '8.10', type: 'multiple_choice', stem: '$y = x^2$ around $y = -1$. Radius $=$', choices: ['$x^2$', '$x^2 + 1$', '$x^2 - 1$', '$1 - x^2$'], correct: 1, explanation: 'Distance from curve to axis: $x^2 - (-1) = x^2 + 1$' },
+            { topic: '8.10', type: 'multiple_choice', stem: 'When revolving $y = x^2$ around the line $y = -1$, what is the radius of each disc?', choices: ['$x^2$', '$x^2 + 1$', '$x^2 - 1$', '$1 - x^2$'], correct: 1, explanation: 'Distance from curve to axis: $x^2 - (-1) = x^2 + 1$' },
             { topic: '8.10', type: 'multiple_choice', stem: '$y = x$ around $y = 4$ (for $x$ from 0 to 4). Radius:', choices: ['$x$', '$4 - x$', '$x - 4$', '$4$'], correct: 1, explanation: 'Distance from $y = x$ to $y = 4$ is $4 - x$.' },
-            { topic: '8.10', type: 'multiple_choice', stem: 'Around $x = 2$, region right of y-axis. Radius uses:', choices: ['$x$', '$2 - x$', '$x - 2$', '$|x - 2|$'], correct: 1, explanation: 'Distance from $y$-axis ($x$ values) to $x = 2$.' },
-            { topic: '8.10', type: 'multiple_choice', stem: 'Axis above curve means:', choices: ['Subtract axis from curve', 'Subtract curve from axis', 'Add them', 'Use absolute value'], correct: 1, explanation: 'Radius = axis $y$-value minus curve $y$-value.' },
-            { topic: '8.10', type: 'multiple_choice', stem: '$y = \\sqrt{x}$ around $y = 3$, from 0 to 4. Radius:', choices: ['$\\sqrt{x}$', '$3 - \\sqrt{x}$', '$\\sqrt{x} - 3$', '$3 + \\sqrt{x}$'], correct: 1, explanation: 'Curve below axis: $3 - \\sqrt{x}$' },
-            { topic: '8.10', type: 'multiple_choice', stem: 'Around $x = -1$, $y$-axis region. Radius from curve at $x$:', choices: ['$x$', '$x + 1$', '$-x - 1$', '$1 - x$'], correct: 1, explanation: 'Distance from $x$ to $-1$ is $x - (-1) = x + 1$' },
-            { topic: '8.10', type: 'multiple_choice', stem: 'Key to other axes: radius is always:', choices: ['$y$-coordinate', 'Distance to axis', '$x$-coordinate', 'Constant'], correct: 1, explanation: 'Perpendicular distance from curve to axis.' },
+                                    { topic: '8.10', type: 'multiple_choice', stem: '$y = \\sqrt{x}$ around $y = 3$, from 0 to 4. Radius:', choices: ['$\\sqrt{x}$', '$3 - \\sqrt{x}$', '$\\sqrt{x} - 3$', '$3 + \\sqrt{x}$'], correct: 1, explanation: 'Curve below axis: $3 - \\sqrt{x}$' },
+                        { topic: '8.10', type: 'multiple_choice', stem: 'Key to other axes: radius is always:', choices: ['$y$-coordinate', 'Distance to axis', '$x$-coordinate', 'Constant'], correct: 1, explanation: 'Perpendicular distance from curve to axis.' },
             { topic: '8.10', type: 'multiple_choice', stem: '$y = x$, around $y = x + 1$:', choices: ['Radius = 1', 'Radius = $x$', 'Radius = $2x + 1$', 'Radius varies'], correct: 0, explanation: 'Parallel lines: constant distance = 1. (Technically not standard but radius = 1.)' },
 
             // Topic 8.11: Washer Method (x or y axis)
@@ -2469,17 +2459,15 @@
             { topic: '8.11', type: 'multiple_choice', stem: 'Washer has:', choices: ['One radius', 'Two radii', 'Three radii', 'No radius'], correct: 1, explanation: 'Outer radius $R$ and inner radius $r$.' },
             { topic: '8.11', type: 'multiple_choice', stem: 'Outer radius is distance from axis to:', choices: ['Inner curve', 'Outer curve', 'Either curve', 'The origin'], correct: 1, explanation: 'Farther curve from axis.' },
             { topic: '8.11', type: 'multiple_choice', stem: '$y = 4$ and $y = x^2$ from 0 to 2, around x-axis:', choices: ['$\\pi\\int_0^2(16 - x^4)\\, dx$', '$\\pi\\int_0^2(4 - x^2)^2\\, dx$', '$\\pi\\int_0^2(x^4 - 16)\\, dx$', '$\\int_0^2(16 - x^4)\\, dx$'], correct: 0, explanation: '$R = 4$, $r = x^2$; $R^2 - r^2 = 16 - x^4$' },
-            { topic: '8.11', type: 'multiple_choice', stem: 'Region between $x = y$ and $x = y^2$ around y-axis:', choices: ['$\\pi\\int(y^2 - y^4)\\, dy$', '$\\pi\\int(y - y^2)^2\\, dy$', '$\\pi\\int(y^4 - y^2)\\, dy$', '$\\int(y^2 - y^4)\\, dy$'], correct: 0, explanation: '$R = y$, $r = y^2$; integrate in $y$.' },
+            { topic: '8.11', type: 'multiple_choice', stem: 'Region between $x = y$ and $x = y^2$ for $0 \\leq y \\leq 1$, revolved around the y-axis:', choices: ['$\\pi\\int_0^1(y^2 - y^4)\\, dy$', '$\\pi\\int_0^1(y - y^2)^2\\, dy$', '$\\pi\\int_0^1(y^4 - y^2)\\, dy$', '$\\int_0^1(y^2 - y^4)\\, dy$'], correct: 0, explanation: '$R = y$, $r = y^2$; integrate in $y$.' },
             { topic: '8.11', type: 'multiple_choice', stem: 'If curves don\'t enclose a hole:', choices: ['Use washer anyway', 'Use disc method', 'Cannot compute', 'Set $r = 0$'], correct: 1, explanation: 'No hole means solid disc, not washer.' },
             { topic: '8.11', type: 'multiple_choice', stem: 'Washer vs disc: washer used when:', choices: ['Solid region', 'Region with hole around axis', 'Single curve', 'Axis through region'], correct: 1, explanation: 'Washer handles the hollow center.' },
 
             // Topic 8.12: Washer Around Other Axes
             { topic: '8.12', type: 'multiple_choice', stem: 'Between $y = x$ and $y = x^2$, around $y = 2$. Outer radius:', choices: ['$2 - x^2$', '$2 - x$', '$x$', '$x^2$'], correct: 0, explanation: 'Distance from $y = 2$ to lower curve $y = x^2$: $2 - x^2$' },
-            { topic: '8.12', type: 'multiple_choice', stem: 'Same region, around $y = 2$. Inner radius:', choices: ['$2 - x^2$', '$2 - x$', '$x - 2$', '$x^2 - 2$'], correct: 1, explanation: 'Distance to upper curve $y = x$: $2 - x$' },
-            { topic: '8.12', type: 'multiple_choice', stem: 'Around $y = -1$, curves above. Both radii:', choices: ['Subtract $-1$', 'Add 1 to each', 'Use absolute values', 'Stay the same'], correct: 1, explanation: '$R = f(x) - (-1) = f(x) + 1$, similarly for $r$.' },
+                        { topic: '8.12', type: 'multiple_choice', stem: 'Around $y = -1$, curves above. Both radii:', choices: ['Subtract $-1$', 'Add 1 to each', 'Use absolute values', 'Stay the same'], correct: 1, explanation: '$R = f(x) - (-1) = f(x) + 1$, similarly for $r$.' },
             { topic: '8.12', type: 'multiple_choice', stem: 'Key check: which curve is farther from axis?', choices: ['Higher $y$ always', 'Lower $y$ always', 'Depends on axis location', 'Doesn\'t matter'], correct: 2, explanation: 'Axis position determines which is outer.' },
-            { topic: '8.12', type: 'multiple_choice', stem: 'Around $x = 3$, region to left. Outer radius from $x = 0$:', choices: ['$3$', '$3 - 0 = 3$', '$0 - 3$', '$|3|$'], correct: 0, explanation: 'Distance from $x = 0$ to $x = 3$ is 3.' },
-            { topic: '8.12', type: 'multiple_choice', stem: 'Common error: forgetting to:', choices: ['Square the radii', 'Adjust radii for axis', 'Use $\\pi$', 'All of these'], correct: 3, explanation: 'All are common mistakes.' },
+                        { topic: '8.12', type: 'multiple_choice', stem: 'Common error: forgetting to:', choices: ['Square the radii', 'Adjust radii for axis', 'Use $\\pi$', 'All of these'], correct: 3, explanation: 'All are common mistakes.' },
             { topic: '8.12', type: 'multiple_choice', stem: 'Around $y = 5$, $y = x$ and $y = x^2$ (0 to 1). $R =$', choices: ['$5 - x^2$', '$5 - x$', '$x$', '$x^2$'], correct: 0, explanation: 'Outer = farther from axis = $5 - x^2$' },
             { topic: '8.12', type: 'multiple_choice', stem: 'Washer formula doesn\'t change, but:', choices: ['Bounds change', 'Radii definitions change', 'Integration variable changes', 'All of these'], correct: 1, explanation: 'Same formula, different $R$ and $r$ expressions.' }
         ];
