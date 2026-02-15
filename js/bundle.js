@@ -350,7 +350,7 @@
                     'quad': false,
                     'science-wing': false,
                     'archives': false,
-                    'natatorium': false,
+                    'richland-creek': false,
                     'chem-lab': false,
                     'stadium': false
                 },
@@ -593,7 +593,7 @@
         }
 
         function isRegionAvailable(regionId) {
-            const availableRegions = ['library', 'bell-tower', 'quad', 'science-wing', 'archives', 'natatorium', 'chem-lab', 'stadium'];
+            const availableRegions = ['library', 'bell-tower', 'quad', 'science-wing', 'archives', 'richland-creek', 'chem-lab', 'stadium'];
             return availableRegions.includes(regionId);
         }
 
@@ -1142,13 +1142,13 @@
                     { id: '5.12', name: 'Implicit Relations' }
                 ]
             },
-            'natatorium': {
-                id: 'natatorium',
-                name: 'The Natatorium',
+            'richland-creek': {
+                id: 'richland-creek',
+                name: 'Richland Creek',
                 unit: 6,
-                icon: '🏊',
+                icon: '🏞️',
                 runeSymbol: '∫',
-                description: '<p>The Natatorium\'s pool fills and drains according to precise rates. Here, accumulation is everything—measuring total volume from flow rates.</p><p>Master <strong>Riemann Sums</strong>, the <strong>Fundamental Theorem of Calculus</strong>, <strong>Antiderivatives</strong>, and <strong>u-Substitution</strong> to understand how quantities accumulate over time.</p>',
+                description: '<p>Richland Creek flows past campus with ever-changing currents. Here, accumulation is everything—measuring total volume from flow rates.</p><p>Master <strong>Riemann Sums</strong>, the <strong>Fundamental Theorem of Calculus</strong>, <strong>Antiderivatives</strong>, and <strong>u-Substitution</strong> to understand how quantities accumulate over time.</p>',
                 topics: [
                     { id: '6.1', name: 'Exploring Accumulations of Change' },
                     { id: '6.2', name: 'Approximating Areas with Riemann Sums' },
@@ -1232,12 +1232,12 @@
             '1.1': {
                 id: '1.1',
                 title: 'Introducing Calculus: Can Change Occur at an Instant?',
-                content: '<h3>The Mystery of Instantaneous Change</h3><p>The tidal observers faced a profound question: If the water level is constantly changing, how can we measure the rate of that change at a single instant?</p><p>Consider this paradox: To calculate a rate, we need two points in time to compare. But an "instant" has no duration—it\'s a single moment. How can something change in zero time?</p><div class="definition"><strong>The Central Question of Calculus:</strong> How do we measure instantaneous rates of change when calculation seems to require an interval of time?</div><h3>Average Rate vs. Instantaneous Rate</h3><p>The ancient scholars first mastered <strong>average rates of change</strong>. If the tide rises from 2 meters to 5 meters over 3 hours, the average rate is:</p><div class="math-display">$$\\text{Average Rate} = \\frac{\\Delta h}{\\Delta t} = \\frac{5 - 2}{3} = 1 \\text{ meter per hour}$$</div><p>But this doesn\'t tell us how fast the water is rising at exactly noon.</p><h3>The Key Insight: Shrinking Intervals</h3><p>The breakthrough came from examining what happens as we shrink the time interval toward zero. This "approaching" behavior is what we call a <strong>limit</strong>.</p><div class="key-concept"><strong>The Foundation of Calculus:</strong> The instantaneous rate of change is what the average rate of change <em>approaches</em> as the time interval shrinks toward zero.</div>'
+                content: '<h3>The Mystery of Instantaneous Change</h3><p>Mathematicians faced a profound question: If a runner\'s position is constantly changing, how can we measure their speed at a single instant?</p><p>Consider this paradox: To calculate a rate, we need two points in time to compare. But an "instant" has no duration—it\'s a single moment. How can something change in zero time?</p><div class="definition"><strong>The Central Question of Calculus:</strong> How do we measure instantaneous rates of change when calculation seems to require an interval of time?</div><h3>Average Rate vs. Instantaneous Rate</h3><p>We start by mastering <strong>average rates of change</strong>. If a runner covers 2 to 5 miles over 3 hours, the average rate is:</p><div class="math-display">$$\\text{Average Rate} = \\frac{\\Delta d}{\\Delta t} = \\frac{5 - 2}{3} = 1 \\text{ mile per hour}$$</div><p>But this doesn\'t tell us how fast they\'re running at exactly noon.</p><h3>The Key Insight: Shrinking Intervals</h3><p>The breakthrough came from examining what happens as we shrink the time interval toward zero. This "approaching" behavior is what we call a <strong>limit</strong>.</p><div class="key-concept"><strong>The Foundation of Calculus:</strong> The instantaneous rate of change is what the average rate of change <em>approaches</em> as the time interval shrinks toward zero.</div>'
             },
             '1.2': {
                 id: '1.2',
                 title: 'Defining Limits and Using Limit Notation',
-                content: '<h3>The Language of Approaching</h3><p>The tidal observers developed precise notation to describe how water levels approach certain heights.</p><div class="definition"><strong>Definition of a Limit:</strong> We write $$\\lim_{x \\to c} f(x) = L$$ and say "the limit of $f(x)$ as $x$ approaches $c$ equals $L$" if $f(x)$ gets arbitrarily close to $L$ as $x$ gets sufficiently close to (but not equal to) $c$.</div><h3>Understanding the Notation</h3><ul><li><strong>$\\lim$</strong> — We\'re finding a limit</li><li><strong>$x \\to c$</strong> — As $x$ approaches the value $c$</li><li><strong>$f(x)$</strong> — We examine the function\'s output</li><li><strong>$= L$</strong> — The output approaches the value $L$</li></ul><h3>One-Sided Limits</h3><div class="definition"><p><strong>Left-hand limit:</strong> $\\lim_{x \\to c^-} f(x)$ — approaching from values less than $c$</p><p><strong>Right-hand limit:</strong> $\\lim_{x \\to c^+} f(x)$ — approaching from values greater than $c$</p></div><div class="key-concept">The two-sided limit exists if and only if both one-sided limits exist and are equal.</div>'
+                content: '<h3>The Language of Approaching</h3><p>Mathematicians developed precise notation to describe how values approach certain numbers.</p><div class="definition"><strong>Definition of a Limit:</strong> We write $$\\lim_{x \\to c} f(x) = L$$ and say "the limit of $f(x)$ as $x$ approaches $c$ equals $L$" if $f(x)$ gets arbitrarily close to $L$ as $x$ gets sufficiently close to (but not equal to) $c$.</div><h3>Understanding the Notation</h3><ul><li><strong>$\\lim$</strong> — We\'re finding a limit</li><li><strong>$x \\to c$</strong> — As $x$ approaches the value $c$</li><li><strong>$f(x)$</strong> — We examine the function\'s output</li><li><strong>$= L$</strong> — The output approaches the value $L$</li></ul><h3>One-Sided Limits</h3><div class="definition"><p><strong>Left-hand limit:</strong> $\\lim_{x \\to c^-} f(x)$ — approaching from values less than $c$</p><p><strong>Right-hand limit:</strong> $\\lim_{x \\to c^+} f(x)$ — approaching from values greater than $c$</p></div><div class="key-concept">The two-sided limit exists if and only if both one-sided limits exist and are equal.</div>'
             },
             '1.3': {
                 id: '1.3',
@@ -1492,7 +1492,7 @@
             '6.1': {
                 id: '6.1',
                 title: 'Exploring Accumulations of Change',
-                content: '<h3>Accumulation Functions</h3><p>The Reservoir collects water over time. How much water accumulates depends on the rate of flow.</p><div class="definition"><strong>Accumulation:</strong> If $r(t)$ is a rate of change, then the total change from $a$ to $b$ is: $$\\text{Total Change} = \\int_a^b r(t)\\, dt$$</div><div class="example"><div class="example-header">Example</div><p>Water flows at $r(t) = 3t$ gallons/minute. Total water in first 4 minutes:</p><p>$\\int_0^4 3t\\, dt = \\frac{3t^2}{2}\\Big|_0^4 = 24$ gallons</p></div><div class="key-concept">Integration "undoes" differentiation—it accumulates rates into totals.</div>'
+                content: '<h3>Accumulation Functions</h3><p>Richland Creek flows past campus, carrying water at varying rates. How much water passes a point depends on the flow rate over time.</p><div class="definition"><strong>Accumulation:</strong> If $r(t)$ is a rate of change, then the total change from $a$ to $b$ is: $$\\text{Total Change} = \\int_a^b r(t)\\, dt$$</div><div class="example"><div class="example-header">Example</div><p>Water flows at $r(t) = 3t$ gallons/minute. Total water in first 4 minutes:</p><p>$\\int_0^4 3t\\, dt = \\frac{3t^2}{2}\\Big|_0^4 = 24$ gallons</p></div><div class="key-concept">Integration "undoes" differentiation—it accumulates rates into totals.</div>'
             },
             '6.2': {
                 id: '6.2',
